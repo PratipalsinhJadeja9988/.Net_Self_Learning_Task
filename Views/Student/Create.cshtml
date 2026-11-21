@@ -1,0 +1,59 @@
+@model Student
+
+@{
+    ViewData["Title"] = "Register student";
+}
+
+<header class="page-head">
+    <h1>Register student</h1>
+    <p class="lead">All fields are required. Errors are shown next to each field.</p>
+</header>
+
+<div class="card narrow">
+    <form asp-action="Create" method="post" id="student-form" novalidate>
+
+        <div class="field">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" autocomplete="off" placeholder="Example: Priya Patel" />
+            <div class="field-row">
+                <span asp-validation-for="Name" class="field-error"></span>
+                <span class="counter" id="name-counter">0 / 60</span>
+            </div>
+        </div>
+
+        <div class="field">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" autocomplete="off" placeholder="name@example.com" />
+            <span asp-validation-for="Email" class="field-error"></span>
+        </div>
+
+        <div class="field-group">
+            <div class="field">
+                <label asp-for="Course"></label>
+                <input asp-for="Course" list="course-options" autocomplete="off" placeholder="Choose or type a course" />
+                <datalist id="course-options">
+                    <option value="B.Tech Computer Engineering"></option>
+                    <option value="B.Tech Information Technology"></option>
+                    <option value="BCA"></option>
+                    <option value="MCA"></option>
+                </datalist>
+                <span asp-validation-for="Course" class="field-error"></span>
+            </div>
+
+            <div class="field">
+                <label asp-for="Semester"></label>
+                <input asp-for="Semester" min="1" max="8" placeholder="1 to 8" />
+                <span asp-validation-for="Semester" class="field-error"></span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="submit" class="btn btn-primary" id="submit-btn">Register student</button>
+            <a class="btn" asp-action="Index">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/student-form.js"></script>
+}

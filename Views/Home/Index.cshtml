@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Home";
+    Student latest = ViewBag.Latest as Student;
+}
+
+<header class="page-head">
+    <h1>Student course registration</h1>
+    <p class="lead">Register students for a course, review everyone who has registered and open the full details of any student.</p>
+</header>
+
+<section class="grid two">
+    <div class="card">
+        <h2>Registered students</h2>
+        <p class="big-number">@ViewBag.Total</p>
+        @if (latest != null)
+        {
+            <p class="muted">Latest registration: <a asp-controller="Student" asp-action="Details" asp-route-id="@latest.Id">@latest.Name</a></p>
+        }
+        else
+        {
+            <p class="muted">No student has been registered yet.</p>
+        }
+        <div class="actions">
+            <a class="btn btn-primary" asp-controller="Student" asp-action="Create">Register a student</a>
+            <a class="btn" asp-controller="Student" asp-action="Index">Open student list</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>How it works</h2>
+        <ol class="steps">
+            <li><strong>Fill the form.</strong> Enter name, email, course and semester.</li>
+            <li><strong>Validation.</strong> The form is checked in the browser first and again on the server.</li>
+            <li><strong>Review.</strong> Valid students appear in the list, where you can search, filter and sort.</li>
+        </ol>
+    </div>
+</section>

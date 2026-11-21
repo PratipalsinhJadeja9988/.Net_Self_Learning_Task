@@ -1,0 +1,42 @@
+@model Student
+
+@{
+    ViewData["Title"] = "Student details";
+}
+
+<header class="page-head">
+    <h1>Student details</h1>
+</header>
+
+<div class="card narrow">
+    <div class="profile">
+        <div class="avatar">@Model.Name.Substring(0, 1).ToUpper()</div>
+        <div>
+            <h2>@Model.Name</h2>
+            <p class="muted">Student Id @Model.Id</p>
+        </div>
+    </div>
+
+    <dl class="details">
+        <dt>Email address</dt>
+        <dd>
+            <span id="student-email">@Model.Email</span>
+            <button type="button" class="btn btn-small" id="copy-email">Copy email</button>
+        </dd>
+
+        <dt>Course</dt>
+        <dd>@Model.Course</dd>
+
+        <dt>Semester</dt>
+        <dd><span class="badge">Semester @Model.Semester</span></dd>
+    </dl>
+
+    <div class="actions">
+        <a class="btn" asp-action="Index">Back to list</a>
+        <button type="button" class="btn" id="print-btn">Print</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/student-details.js"></script>
+}

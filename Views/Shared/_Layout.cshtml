@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] | CourseDesk</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f766e'/%3E%3Cpath d='M9 22V10h6a4 4 0 010 8h-3' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <a class="brand" asp-controller="Home" asp-action="Index">
+                <span class="brand-mark">CD</span>
+                <span class="brand-text">CourseDesk</span>
+            </a>
+
+            <nav class="menu" id="menu">
+                <a asp-controller="Home" asp-action="Index" data-path="/">Home</a>
+                <a asp-controller="Student" asp-action="Create" data-path="/Student/Create">Register student</a>
+                <a asp-controller="Student" asp-action="Index" data-path="/Student">Student list</a>
+            </nav>
+
+            <div class="sidebar-foot">
+                <button type="button" class="btn btn-ghost" id="theme-toggle">Switch to dark theme</button>
+                <p class="small">.NET Technologies (01CE1523)<br />Self-Learning Activity</p>
+            </div>
+        </aside>
+
+        <main class="content">
+            @if (TempData["Message"] != null)
+            {
+                <div class="toast" id="toast" role="status">
+                    <span>@TempData["Message"]</span>
+                    <button type="button" class="toast-close" id="toast-close" aria-label="Close message">Close</button>
+                </div>
+            }
+
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
